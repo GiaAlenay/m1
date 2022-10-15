@@ -4,7 +4,8 @@
 
 const producto = function (array) {
   //escribe aqui tu codigo
-
+  if(array.length===1){return array[0] }
+  else{return array.shift()*producto(array)}
 };
 
 // Dado un objeto con objetos anidados utilizar la recursión para crear una función
@@ -27,6 +28,20 @@ const producto = function (array) {
 
 const isThere = function (obj, value){
   //escribe aqui tu codigo 
+  for(let prop in obj){
+    if(obj[prop]===value)
+    {
+      //var re=true;
+      //console.log(re)
+      return true;
+      break;
+  } 
+   if( typeof obj[prop]==='object'){  return isThere(obj[prop],value)}
+    
+}   
+
+  return false;
+
 
 };
 module.exports = { producto, isThere };

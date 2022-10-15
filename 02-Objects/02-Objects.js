@@ -5,6 +5,9 @@ function crearClaseLibro() {
       // El constructor de la clase Libro recibe titulo (string), autor (string), traducciones (array de objetos)
       // Inicializar las propiedades del libro con los valores recibidos como argumento
       // Tu código aca:
+      this.titulo=titulo;
+      this.autor=autor;
+      this.traducciones=traducciones;
     
       
     }
@@ -12,12 +15,14 @@ function crearClaseLibro() {
     getTitulo() {
       // este método debe retornar el titulo del libro.
       // Tu código aca:
+     return this.titulo;
       
     }
 
     getAutor() {
       // El método debe retornar nombre y apellido del autor
       // Tu código aca:
+      return this.autor;
       
     }
 
@@ -27,27 +32,34 @@ function crearClaseLibro() {
       // No debe retornar nada.
       // Tu código aca:
            
-      
+      this.traducciones.push({idioma: idioma, editorial:editorial} )
 
     }
 
     getTraducciones() {
       // El método debe retornar un arreglo con sólo los idiomas del arreglo de traducciones del libro.
       // Ej:
-      // Suponiendo que el libro tiene estas traducciones: [{idioma: 'inglés', editorial: 'Scholastic'}, {idioma: 'castellano', editorial: 'Santillana'}]
+      // Suponiendo que el libro tiene estas traducciones: [{idioma: 'inglés', editorial: 'Scholastic'}, 
+      //{idioma: 'castellano', editorial: 'Santillana'}]
       // libro.getTraducciones() debería devolver ['inglés', 'castellano']
       // Tu código aca:
-      
+      let newArray=[];
+      for (let i = 0; i < this.traducciones.length; i++) {
+        newArray.push( this.traducciones[i].idioma)
+        
+      }
+      return newArray
     }
 
     getAlcance() {
       // El metodo debe retornar la cantidad de idiomas en la que esta traducido el libro.
       // Dato: no se repiten ni los idiomas ni las editoriales
       // ej:
-      // Suponiendo que el libro tiene estas traducciones: [{idioma: 'inglés', editorial: 'Scholastic'}, {idioma: 'castellano', editorial: 'Santillana'}]
+      // Suponiendo que el libro tiene estas traducciones: [{idioma: 'inglés', editorial: 'Scholastic'}, 
+      //{idioma: 'castellano', editorial: 'Santillana'}]
       // libro.getAlcance() deberia devolver 2
       // Tu código aca:
-      
+      return this.traducciones.length
     }
   }
 
@@ -72,7 +84,14 @@ const printStaff = function (objeto) {
   // Retornar un arreglo que contenga los strings indicando el titulo y nombre de cada miembro del staff
   // de esta forma "The headmaster is Albus Percival Wulfric Brian Dumbledore" 
   // el arreglo debe mantener el orden que posee el staff del objeto.
-  
+  let arr=[];
+  for(let prop in objeto.staff){
+    for(let prop2 in objeto.staff[prop]){
+      arr.push("The "+prop+" is "+objeto.staff[prop][prop2])
+    }
+    
+  }
+  return arr
 };
 
 module.exports = { crearClaseLibro, printStaff };
